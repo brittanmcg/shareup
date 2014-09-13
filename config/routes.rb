@@ -12,4 +12,8 @@ Shareup::Application.routes.draw do
     :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
+  devise_scope :user do 
+    get '/api/current_user' => 'users/sessions#show_current_user'
+  end
+
 end
