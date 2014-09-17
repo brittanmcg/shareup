@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>Welcome back {{ user.name }}</h2>
+  <div class="row">
+    <ul>
+      <li ng-repeat="article in articles | orderBy:publishedDate:false">
+        <div class="article-listing">
+          <div>
+            <h2>
+              <a href="{{ article.link }}" title="{{ article.title }}">
+                {{article.title}}
+              </a>
+            </h2>
+            <p>
+              {{ article.publishedDate | date: 'M/d/yy h:mm:ss a'}}
+              <div>
+                <div data-ng-hide="showShareBox">
+                  <a ng-click="showShareBox=!showShareBox">Share with a friend</a>
+                </div>
+                <div data-ng-show="showShareBox">
+                  <form name="shareForm">
+                    <label>Share with a friend</label>
+                    <input type="text" placeholder="email or username" data-ng-model="newShare.recipient">
+                    <input type="submit" class="btn" ng-click="showShareBox=!showShareBox;share()" ng-disabled="shareForm.$invalid" value="Share">
+                  </form>
+                </div>
+              </div>
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
